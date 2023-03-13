@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+  <meta charset="UTF-8">
+  <title>My Resume</title>
+  <!-- Add the following line to include the Font Awesome CSS file -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-Mf+VchYcQzYmmHSl0C1qhr7VdwtgsLgRMt9X4BlPtNN13tV8ZRvIuHZ7VhS+SoNSlh7W8JfUPANkJIZ9G9RA==">
+<style>
+    /* CSS code for animation */
+    .heading-section {
+        transition: transform 0.3s ease-out;
+      }
+      
+      .heading-section.sticky {
+        position: fixed;
+        top: 0;
+        background-color: white;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        z-index: 100;
+      }
+      
+      .heading-section.sticky h1 {
+        font-size: 1.5rem;
+        padding: 1rem;
+      }
+      
+      @media screen and (min-width: 768px) {
+        .heading-section.sticky h1 {
+          font-size: 2rem;
+          padding: 1.5rem;
+        }
+      } 
+</style>      
+  <!-- Add your own CSS file after the Font Awesome CSS file -->
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <form id="contact-form" action="#" method="post">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" required></textarea>
+        <button type="submit">Send</button>
+      </form>
+      
+  <header>
+    <div class="header-left">
+      <h1>John Doe</h1>
+      <p>Email: john.doe@example.com</p>
+      <p>Address: 123 Main St, Anytown, USA</p>
+    </div>
+    <div class="header-right">
+      <img src="profile-photo.png" alt="Profile Photo">
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <h2><i class="fas fa-briefcase"></i> Work Experience</h2>
+      <ul>
+        <li>
+          <h3>Software Developer</h3>
+          <p>Acme Inc.</p>
+          <p>2019 - Present</p>
+          <ul>
+            <li>Developed and maintained web applications using ReactJS, NodeJS, and MySQL.</li>
+            <li>Worked collaboratively with designers and project managers to deliver high-quality software solutions.</li>
+          </ul>
+        </li>
+        <li>
+          <h3>Technical Support Specialist</h3>
+          <p>XYZ Corp.</p>
+          <p>2016 - 2019</p>
+          <ul>
+            <li>Provided technical support to customers via phone, email, and chat.</li>
+            <li>Resolved technical issues related to hardware and software.</li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2><i class="fas fa-code"></i> Personal Projects</h2>
+      <ul>
+        <li>
+          <h3>My Portfolio</h3>
+          <p>A portfolio website showcasing my skills and projects.</p>
+          <p>Technologies used: HTML, CSS, JavaScript, ReactJS</p>
+          <a href="#">View Project</a>
+        </li>
+        <li>
+          <h3>Online Store</h3>
+          <p>An online store built using Shopify platform.</p>
+          <p>Technologies used: Shopify, Liquid</p>
+          <a href="#">View Project</a>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2><i class="fas fa-graduation-cap"></i> Education</h2>
+      <ul>
+        <li>
+          <h3>Bachelor of Science in Computer Science</h3>
+          <p>ABC University</p>
+          <p>GPA: 3.7</p>
+          <p>2012 - 2016</p>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2><i class="fas fa-tools"></i> Skills</h2>
+      <ul>
+        <li>HTML/CSS</li>
+        <li>JavaScript</li>
+        <li>ReactJS</li>
+        <li>NodeJS</li>
+        <li>MySQL</li>
+        <li>Shopify</li>
+      </ul>
+    </section>
+  </main>
+  <script>
+    const form = document.getElementById('contact-form');
+  
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const nameInput = document.getElementById('name');
+      const emailInput = document.getElementById('email');
+      const messageInput = document.getElementById('message');
+  
+      const nameValue = nameInput.value.trim();
+      const emailValue = emailInput.value.trim();
+      const messageValue = messageInput.value.trim();
+  
+      if (nameValue === '') {
+        showError(nameInput, 'Name is required');
+      } else {
+        showSuccess(nameInput);
+      }
+  
+      if (emailValue === '') {
+        showError(emailInput, 'Email is required');
+      } else if (!isValidEmail(emailValue)) {
+        showError(emailInput, 'Please enter a valid email address');
+      } else {
+        showSuccess(emailInput);
+      }
+  
+      if (messageValue === '') {
+        showError(messageInput, 'Message is required');
+      } else {
+        showSuccess(messageInput);
+      }
+    });
+  
+    function showError(input, message) {
+      const formControl = input.parentElement;
+      formControl.className = 'form-control error';
+      const errorEl = formControl.querySelector('small');
+      errorEl.innerText = message;
+    }
+  
+    function showSuccess(input) {
+      const formControl = input.parentElement;
+      formControl.className = 'form-control success';
+    }
+  
+    function isValidEmail(email) {
+      const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return regex.test(email);
+    }
+  </script>
+  
+</body>
+</html>
